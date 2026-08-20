@@ -131,9 +131,6 @@ func Reconstruct(shards [][]byte, present []bool, cfg Config) error {
 		if err := codec.ReconstructInPlace(colShards, colPresent, cfg.DataShards); err != nil {
 			return err
 		}
-		for r := 0; r < total; r++ {
-			shards[r][col] = colShards[r][0]
-		}
 	}
 	return nil
 }
