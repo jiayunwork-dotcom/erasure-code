@@ -92,10 +92,13 @@ func ComputeParity(shards [][]byte, dataShards, parityShards int) error {
 		return err
 	}
 	for p := 0; p < parityShards; p++ {
-		parity := make([]byte, size)
+		parity := shards[dataShards+p]
+		if parity == nil || len(parity) != size {
+			parity = make([]byte, size)
+		}
 		row := m[p]
 		for c := 0; c < dataShards; c++ {
-			galois.MulSlice(row[c], shards[c], parity)
+			galois.MulSliceAdd(row[c], shards[c], parity)
 		}
 		shards[dataShards+p] = parity
 	}
