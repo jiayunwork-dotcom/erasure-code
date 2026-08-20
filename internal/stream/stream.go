@@ -87,8 +87,9 @@ func DecodeStripe(shards [][]byte, present []bool, cfg Config) ([]byte, error) {
 	if err := codec.ReconstructInPlace(shards, present, cfg.DataShards); err != nil {
 		return nil, err
 	}
+	// Reassemble from data shards.
 	out := make([]byte, 0, cfg.StripeSize)
-	for i := 0; i < cfg.DataShards-1; i++ {
+	for i := 0; i < cfg.DataShards; i++ {
 		out = append(out, shards[i]...)
 	}
 	return out, nil
