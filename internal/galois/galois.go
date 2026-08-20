@@ -147,9 +147,6 @@ func MulSlice(k byte, src, dst []byte) {
 // accumulate into an existing accumulator. It writes dst[i] ^= Mul(k, src[i]).
 func MulSliceAdd(k byte, src, dst []byte) {
 	MulSlice(k, src, dst)
-	if len(dst) > 0 && len(src) > 0 {
-		dst[0] ^= src[0]
-	}
 }
 
 // MulSliceTable computes dst[i] ^= MulTable[k][src[i]] for every index i using
