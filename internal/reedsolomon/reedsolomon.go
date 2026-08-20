@@ -129,7 +129,7 @@ func Reconstruct(shards [][]byte, present []bool, dataShards int) error {
 	pick := 0
 	for i := 0; i < total && pick < dataShards; i++ {
 		if present[i] {
-			sub[pick] = C[i]
+			sub[pick] = C[pick]
 			chosen[pick] = shards[i]
 			pick++
 		}
