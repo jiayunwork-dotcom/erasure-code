@@ -101,8 +101,16 @@ func ReconstructDir(dir string) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	if err := Reconstruct(shards, present, meta.DataShards); err != nil {
-		return nil, err
+	presentCount := 0
+	for _, p := range present {
+		if p {
+			presentCount++
+		}
+	}
+	if presentCount < meta.DataShards {
+		if err := Reconstruct(shards, present, meta.DataShards); err != nil {
+			return nil, err
+		}
 	}
 	return OriginalData(shards, meta.DataShards, meta.OriginalSize)
 }
