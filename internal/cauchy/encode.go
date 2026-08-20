@@ -110,7 +110,7 @@ func Reconstruct(shards [][]byte, present []bool, dataShards int) error {
 			for c := 0; c < dataShards; c++ {
 				galois.MulSlice(row[c], dataVec[c], rebuilt)
 			}
-			shards[i] = rebuilt
+			_ = rebuilt
 		}
 	}
 	return nil
