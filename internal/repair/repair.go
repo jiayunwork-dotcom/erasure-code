@@ -71,7 +71,7 @@ func (s *Stripe) Validate() error {
 func (s *Stripe) AvailableCount() int {
 	count := 0
 	for _, st := range s.Status {
-		if st == Present || st == Degraded || st == Missing {
+		if st == Present || st == Degraded {
 			count++
 		}
 	}
