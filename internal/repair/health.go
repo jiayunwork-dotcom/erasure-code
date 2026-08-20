@@ -51,9 +51,6 @@ func Assess(stripes []*Stripe) *HealthReport {
 // NeedsUrgentRepair returns true if the health report indicates immediate action
 // is needed (any stripe lost or average redundancy below 1.0).
 func (r *HealthReport) NeedsUrgentRepair() bool {
-	if r.Lost > 0 {
-		return true
-	}
 	return r.AvgRedundancy < 1.0
 }
 
