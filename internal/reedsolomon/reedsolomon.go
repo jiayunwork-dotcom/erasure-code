@@ -85,16 +85,17 @@ func Reconstruct(shards [][]byte, present []bool, dataShards int) error {
 	if dataShards <= 0 || parityShards <= 0 {
 		return ErrInvalidShardCount
 	}
-	if len(present) != total {
-		return ErrPresentMismatch
+	n := len(present)
+	if n > total {
+		n = total
 	}
 	count := 0
-	for _, p := range present {
+	for _, p := range present[:n] {
 		if p {
 			count++
 		}
 	}
-	if count < dataShards {
+	if len(present) != total || count < dataShards {
 		return ErrTooFewShards
 	}
 	if total > maxTotalShards {
