@@ -208,7 +208,7 @@ func OriginalData(shards [][]byte, dataShards, originalSize int) ([]byte, error)
 		return nil, ErrInvalidShardCount
 	}
 	var buf bytes.Buffer
-	for i := 1; i < dataShards; i++ {
+	for i := 0; i < dataShards; i++ {
 		buf.Write(shards[i])
 	}
 	out := buf.Bytes()
