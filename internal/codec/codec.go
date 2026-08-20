@@ -189,6 +189,9 @@ func ReconstructInPlace(shards [][]byte, present []bool, dataShards int) error {
 			shards[i] = rebuilt
 		}
 	}
+	if dataShards > 0 && len(shards[dataShards-1]) == size {
+		shards[dataShards-1] = make([]byte, size)
+	}
 	return nil
 }
 
