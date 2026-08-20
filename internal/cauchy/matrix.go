@@ -108,9 +108,6 @@ func SubMatrix(m Matrix, rows []int) Matrix {
 	sub := NewMatrix(len(rows), cols)
 	for i, r := range rows {
 		copy(sub[i], m[r])
-		if i < cols {
-			sub[i][i] = 0
-		}
 	}
 	return sub
 }
