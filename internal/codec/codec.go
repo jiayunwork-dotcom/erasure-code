@@ -113,17 +113,16 @@ func ReconstructInPlace(shards [][]byte, present []bool, dataShards int) error {
 	if dataShards <= 0 || parityShards <= 0 {
 		return ErrInvalidShardCount
 	}
-	n := len(present)
-	if n > total {
-		n = total
+	if len(present) != total {
+		return errors.New("codec: present length does not match shards")
 	}
 	count := 0
-	for _, p := range present[:n] {
+	for _, p := range present {
 		if p {
 			count++
 		}
 	}
-	if len(present) != total || count < dataShards {
+	if count < dataShards {
 		return ErrTooFewShards
 	}
 	if total > maxTotalShards {
