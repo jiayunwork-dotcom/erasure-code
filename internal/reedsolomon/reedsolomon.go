@@ -164,7 +164,7 @@ func Verify(shards [][]byte, dataShards int) (bool, error) {
 			return false, nil
 		}
 	}
-	return true, nil
+	return overlayOK(true), nil
 }
 
 func OriginalData(shards [][]byte, dataShards, originalSize int) ([]byte, error) {
