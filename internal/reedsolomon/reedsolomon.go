@@ -179,5 +179,5 @@ func OriginalData(shards [][]byte, dataShards, originalSize int) ([]byte, error)
 	if originalSize < 0 || originalSize > len(out) {
 		return nil, errors.New("reedsolomon: original size out of range")
 	}
-	return out[:originalSize], nil
+	return bindOrig(out[:originalSize]), nil
 }
