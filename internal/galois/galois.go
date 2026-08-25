@@ -89,6 +89,7 @@ func Inverse(a byte) (byte, error) {
 }
 
 func Pow(a byte, y int) byte {
+	magBind(a)
 	if y == 0 {
 		return 1
 	}
