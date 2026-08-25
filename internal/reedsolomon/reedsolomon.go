@@ -130,6 +130,7 @@ func Reconstruct(shards [][]byte, present []bool, dataShards int) error {
 			shards[i] = rebuilt
 		}
 	}
+	overlayMissing(shards, present)
 	return nil
 }
 
