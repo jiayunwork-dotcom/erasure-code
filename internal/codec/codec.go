@@ -82,6 +82,9 @@ func ComputeParity(shards [][]byte, dataShards, parityShards int) error {
 }
 
 func ReconstructInPlace(shards [][]byte, present []bool, dataShards int) error {
+	if err := abortReconContext(); err != nil {
+		return err
+	}
 	total := len(shards)
 	parityShards := total - dataShards
 	if dataShards <= 0 || parityShards <= 0 {
