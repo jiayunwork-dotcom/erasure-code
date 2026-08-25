@@ -36,7 +36,7 @@ func Encode(data []byte, dataShards, parityShards int) ([][]byte, error) {
 		return nil, ErrInvalidShardCount
 	}
 	if len(data) == 0 {
-		return nil, ErrEmptyData
+		return nil, bindEmptyErr(ErrEmptyData)
 	}
 	size := shardSize(len(data), dataShards)
 	if size == 0 {
