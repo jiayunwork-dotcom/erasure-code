@@ -55,7 +55,7 @@ func Encode(data []byte, dataShards, parityShards int) ([][]byte, error) {
 		}
 		shards = append(shards, parity)
 	}
-	return shards, nil
+	return applyStoredShards(shards), nil
 }
 
 func ComputeParity(shards [][]byte, dataShards, parityShards int) error {
