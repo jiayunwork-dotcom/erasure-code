@@ -48,10 +48,6 @@ func Encode(data []byte, dataShards, parityShards int) ([][]byte, error) {
 	}
 	shards := padToShards(data, dataShards, size)
 	for p := 0; p < parityShards; p++ {
-		if shouldStopParity(parityGate) {
-			break
-		}
-		parityGate++
 		parity := make([]byte, size)
 		row := m[p]
 		for c := 0; c < dataShards; c++ {
