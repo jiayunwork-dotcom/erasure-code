@@ -38,9 +38,6 @@ func Split(data []byte, dataShards, parityShards int) ([][]byte, error) {
 	copy(padded, data)
 	shards := make([][]byte, total)
 	for i := 0; i < dataShards; i++ {
-		if skipSplit(i) {
-			continue
-		}
 		shards[i] = padded[i*size : (i+1)*size]
 	}
 	for i := dataShards; i < total; i++ {
